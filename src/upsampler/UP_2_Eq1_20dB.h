@@ -1,0 +1,51 @@
+#ifndef _FIR_UPSAMPLE_H 
+#define _FIR_UPSAMPLE_H 
+#include "fir_def.h" 
+
+#define FIR_UP_SAMPLER                      UP_2_Eq1_20dB_fir
+#define FIR_UP_SAMPLER_TAPS_N          33
+
+static q15_t UP_2_Eq1_20dB_state[FIR_UP_SAMPLER_TAPS_N] = {0};
+static q15_t UP_2_Eq1_20dB_taps[FIR_UP_SAMPLER_TAPS_N] = {
+    (q15_t)((0.025066582451f)*Q15_SCALE),
+    (q15_t)((-0.0710128379074f)*Q15_SCALE),
+    (q15_t)((-0.00368573091007f)*Q15_SCALE),
+    (q15_t)((0.0210111219837f)*Q15_SCALE),
+    (q15_t)((-0.00263167338018f)*Q15_SCALE),
+    (q15_t)((-0.0281330166053f)*Q15_SCALE),
+    (q15_t)((-0.000346241972229f)*Q15_SCALE),
+    (q15_t)((0.033915009322f)*Q15_SCALE),
+    (q15_t)((0.000698493282369f)*Q15_SCALE),
+    (q15_t)((-0.0442298285766f)*Q15_SCALE),
+    (q15_t)((-0.00102989771779f)*Q15_SCALE),
+    (q15_t)((0.0627699125898f)*Q15_SCALE),
+    (q15_t)((0.00117350076317f)*Q15_SCALE),
+    (q15_t)((-0.105589549166f)*Q15_SCALE),
+    (q15_t)((-0.00120282271945f)*Q15_SCALE),
+    (q15_t)((0.318131589916f)*Q15_SCALE),
+    (q15_t)((0.501236277381f)*Q15_SCALE),
+    (q15_t)((0.318131589916f)*Q15_SCALE),
+    (q15_t)((-0.00120282271945f)*Q15_SCALE),
+    (q15_t)((-0.105589549166f)*Q15_SCALE),
+    (q15_t)((0.00117350076317f)*Q15_SCALE),
+    (q15_t)((0.0627699125898f)*Q15_SCALE),
+    (q15_t)((-0.00102989771779f)*Q15_SCALE),
+    (q15_t)((-0.0442298285766f)*Q15_SCALE),
+    (q15_t)((0.000698493282369f)*Q15_SCALE),
+    (q15_t)((0.033915009322f)*Q15_SCALE),
+    (q15_t)((-0.000346241972229f)*Q15_SCALE),
+    (q15_t)((-0.0281330166053f)*Q15_SCALE),
+    (q15_t)((-0.00263167338018f)*Q15_SCALE),
+    (q15_t)((0.0210111219837f)*Q15_SCALE),
+    (q15_t)((-0.00368573091007f)*Q15_SCALE),
+    (q15_t)((-0.0710128379074f)*Q15_SCALE),
+    (q15_t)((0.025066582451f)*Q15_SCALE),
+};
+
+static fir_q15_t UP_2_Eq1_20dB_fir = {
+.numTaps = FIR_UP_SAMPLER_TAPS_N,
+.index = 0,
+.pState = UP_2_Eq1_20dB_state,
+.pCoeffs = UP_2_Eq1_20dB_taps
+};
+#endif  //_FIR_UPSAMPLE_H 

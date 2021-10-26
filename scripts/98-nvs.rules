@@ -1,0 +1,1 @@
+KERNEL=="hidraw*", PROGRAM="/lib/udev/is_nvs_device $name", MODE="0666"

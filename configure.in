@@ -1,0 +1,50 @@
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ([2.69])
+AC_INIT(libnvs, 0.13)
+AM_INIT_AUTOMAKE
+LT_INIT
+AC_CONFIG_SRCDIR([include/nvs.h])
+
+# Checks for programs.
+AC_PROG_CXX
+AC_PROG_AWK
+AC_PROG_CC
+AC_PROG_CPP
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+AM_PROG_CC_C_O
+PKG_PROG_PKG_CONFIG
+
+# Checks for libraries.
+
+# Checks for header files.
+AC_CHECK_HEADERS([fcntl.h stddef.h stdlib.h string.h sys/ioctl.h unistd.h])
+
+PKG_CHECK_MODULES([ADPCM], [libadpcm >= 0.1])
+PKG_CHECK_MODULES([BROADVOICE], [broadvoice >= 0.0.2])
+PKG_CHECK_MODULES([OPUS], [opus >= 1.1])
+PKG_CHECK_MODULES([SBC], [sbc >= 1.3])
+
+PKG_CHECK_MODULES([UDEV], [udev])
+udevdir=`$PKG_CONFIG --variable=udevdir udev`
+udevrulesdir="$udevdir/rules.d"
+AC_SUBST(udevdir)
+AC_SUBST(udevrulesdir)
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_TYPE_INT16_T
+AC_TYPE_SSIZE_T
+AC_TYPE_UINT8_T
+
+# Checks for library functions.
+AC_FUNC_MALLOC
+
+AC_CONFIG_FILES([Makefile
+		 src/Makefile
+		 tools/Makefile
+		 scripts/Makefile
+		 libnvs.pc])
+AC_OUTPUT

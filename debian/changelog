@@ -1,0 +1,86 @@
+libnvs (0.14) unstable; urgency=medium
+
+  * Updated README file.
+
+ -- Piotr Zięcik <kosmo@ubuntu-64.nordicsemi.no>  Thu, 01 Feb 2018 14:12:53 +0100
+
+libnvs (0.13) unstable; urgency=medium
+
+  * Added support for 8kHz, 24kHz and 32kHz sampling rates.
+  * Added support for audio packets larger than 20 bytes.
+
+ -- Piotr Zięcik <kosmo@ubuntu-64.nordicsemi.no>  Mon, 06 Nov 2017 14:54:58 +0100
+
+libnvs (0.12) unstable; urgency=medium
+
+  * Added support for SBC and mSBC codecs.
+
+ -- Andrzej Głąbek <angl@ubuntu-64.nordicsemi.no>  Tue, 21 Mar 2017 11:43:01 +0100
+
+libnvs (0.11) unstable; urgency=medium
+
+  * Added support for 60ms SILK frame.
+
+ -- Piotr Zięcik <kosmo@ubuntu-64.nordicsemi.no>  Wed, 01 Jun 2016 13:53:10 +0200
+
+libnvs (0.10) unstable; urgency=medium
+
+  * Added support for variable frame lengith in CELT and SILK modes.
+
+ -- Piotr Zięcik <kosmo@ubuntu-64.nordicsemi.no>  Fri, 22 Apr 2016 09:37:10 +0200
+
+libnvs (0.9) unstable; urgency=medium
+
+  * Added support for SILK.
+  * Reduced framing overhead.
+
+ -- Piotr Zięcik <kosmo@ubuntu-64.nordicsemi.no>  Mon, 18 Apr 2016 11:52:36 +0200
+
+libnvs (0.8) unstable; urgency=medium
+
+  * Added support for OPUS.
+
+ -- Piotr Zięcik <kosmo@ubuntu-64.nordicsemi.no>  Fri, 08 Apr 2016 09:34:07 +0200
+
+libnvs (0.7) unstable; urgency=medium
+
+  * Pass sampling rate to upper layers.
+  * Initial SR52 support.
+
+ -- Piotr Zięcik <kosmo@ubuntu-64.nordicsemi.no>  Wed, 03 Feb 2016 10:29:49 +0100
+
+libnvs (0.6) unstable; urgency=medium
+
+  * Added support for ADPCM packets containing 8 and 16ms of sound.
+
+ -- Piotr Zięcik <pizi@nordicsemi.no>  Tue, 03 Nov 2015 15:56:24 +0100
+
+libnvs (0.5) unstable; urgency=medium
+
+  * Added support for upsampled ADPCM.
+
+ -- Piotr Zięcik <pizi@nordicsemi.no>  Mon, 25 May 2015 13:06:45 +0200
+
+libnvs (0.4) unstable; urgency=medium
+
+  * Support to the Smart Remote new firmware
+
+ -- Lauro Ramos Venancio <lauro.venancio@openbossa.org>  Wed, 15 Oct 2014 14:56:31 -0300
+
+libnvs (0.3) unstable; urgency=low
+
+  * Update the ADPCM transmission protocol
+
+ -- Lauro Ramos Venancio <lauro.venancio@openbossa.org>  Tue, 16 Sep 2014 13:46:23 +0800
+
+libnvs (0.2) unstable; urgency=low
+
+  * Add support to ADPCM codec.
+
+ -- Lauro Ramos Venancio <lauro.venancio@openbossa.org>  Thu, 02 May 2013 20:05:30 -0300
+
+libnvs (0.1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Lauro Ramos Venancio <lauro.venancio@openbossa.org>  Mon, 12 Nov 2012 18:31:40 -0300

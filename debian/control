@@ -1,0 +1,24 @@
+Source: libnvs
+Priority: extra
+Maintainer: Lauro Ramos Venancio <lauro.venancio@openbossa.org>
+Build-Depends: debhelper (>= 8.0.0), libbroadvoice-dev (>= 0.0.2), libopus-dev (>= 1.1), libsbc-dev (>= 1.3)
+Standards-Version: 3.9.3
+Section: libs
+
+Package: libnvs-dev
+Section: libdevel
+Architecture: any
+Depends: libnvs1 (= ${binary:Version})
+Description: Nordic Voice System Library development package
+
+Package: libnvs1
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Nordic Voice System Library
+
+Package: nvs-cat
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Nordic Voice System dump tool

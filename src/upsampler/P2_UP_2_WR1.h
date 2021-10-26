@@ -1,0 +1,43 @@
+#ifndef _P2_FIR_UP_INTERPOLATOR_H_ 
+#define _P2_FIR_UP_INTERPOLATOR_H_ 
+#include "fir_def.h" 
+
+#define P2FIR_UP_INTERPOLATOR                      P2_UP_2_WR1_p2fir
+#define P2FIR_UP_INTERPOLATOR_TAPS_N          12
+#define P2FIR_UP_INTERPOLATOR_COEFF_N         23
+
+static q15_t P2_UP_2_WR1_state[P2FIR_UP_INTERPOLATOR_TAPS_N] = {0};
+static q15_t P2_UP_2_WR1_coeff[P2FIR_UP_INTERPOLATOR_COEFF_N] = {
+    (q15_t)((-0.0265324097427f)*Q15_SCALE),
+    (q15_t)((1.43264728022e-08f)*Q15_SCALE),
+    (q15_t)((0.0324285007966f)*Q15_SCALE),
+    (q15_t)((-1.43264728282e-08f)*Q15_SCALE),
+    (q15_t)((-0.0416937867385f)*Q15_SCALE),
+    (q15_t)((1.43264728714e-08f)*Q15_SCALE),
+    (q15_t)((0.0583713014339f)*Q15_SCALE),
+    (q15_t)((-1.43264728282e-08f)*Q15_SCALE),
+    (q15_t)((-0.0972855023898f)*Q15_SCALE),
+    (q15_t)((1.43264728282e-08f)*Q15_SCALE),
+    (q15_t)((0.29185650717f)*Q15_SCALE),
+    (q15_t)((0.458447115087f)*Q15_SCALE),
+    (q15_t)((0.29185650717f)*Q15_SCALE),
+    (q15_t)((1.43264728282e-08f)*Q15_SCALE),
+    (q15_t)((-0.0972855023898f)*Q15_SCALE),
+    (q15_t)((-1.43264728282e-08f)*Q15_SCALE),
+    (q15_t)((0.0583713014339f)*Q15_SCALE),
+    (q15_t)((1.43264728714e-08f)*Q15_SCALE),
+    (q15_t)((-0.0416937867385f)*Q15_SCALE),
+    (q15_t)((-1.43264728282e-08f)*Q15_SCALE),
+    (q15_t)((0.0324285007966f)*Q15_SCALE),
+    (q15_t)((1.43264728022e-08f)*Q15_SCALE),
+    (q15_t)((-0.0265324097427f)*Q15_SCALE),
+};
+
+static p2fir_q15_t P2_UP_2_WR1_p2fir = {
+.numTaps = P2FIR_UP_INTERPOLATOR_TAPS_N,
+.numCoeffs = P2FIR_UP_INTERPOLATOR_COEFF_N,
+.index = 0,
+.pState = P2_UP_2_WR1_state,
+.pCoeffs = P2_UP_2_WR1_coeff
+};
+#endif  //_P2_FIR_UP_INTERPOLATOR_H_ 

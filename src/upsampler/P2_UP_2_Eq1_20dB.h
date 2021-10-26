@@ -1,0 +1,53 @@
+#ifndef _P2FIR_UPSAMPLE_H 
+#define _P2FIR_UPSAMPLE_H 
+#include "fir_def.h" 
+
+#define P2FIR_UP_SAMPLER                      P2_UP_2_Eq1_20dB_p2fir
+#define P2FIR_UP_SAMPLER_TAPS_N          17
+#define P2FIR_UP_SAMPLER_COEFF_N         33
+
+static q15_t P2_UP_2_Eq1_20dB_state[P2FIR_UP_SAMPLER_TAPS_N] = {0};
+static q15_t P2_UP_2_Eq1_20dB_coeff[P2FIR_UP_SAMPLER_COEFF_N] = {
+    (q15_t)((0.025066582451f)*Q15_SCALE),
+    (q15_t)((-0.0710128379074f)*Q15_SCALE),
+    (q15_t)((-0.00368573091007f)*Q15_SCALE),
+    (q15_t)((0.0210111219837f)*Q15_SCALE),
+    (q15_t)((-0.00263167338018f)*Q15_SCALE),
+    (q15_t)((-0.0281330166053f)*Q15_SCALE),
+    (q15_t)((-0.000346241972229f)*Q15_SCALE),
+    (q15_t)((0.033915009322f)*Q15_SCALE),
+    (q15_t)((0.000698493282369f)*Q15_SCALE),
+    (q15_t)((-0.0442298285766f)*Q15_SCALE),
+    (q15_t)((-0.00102989771779f)*Q15_SCALE),
+    (q15_t)((0.0627699125898f)*Q15_SCALE),
+    (q15_t)((0.00117350076317f)*Q15_SCALE),
+    (q15_t)((-0.105589549166f)*Q15_SCALE),
+    (q15_t)((-0.00120282271945f)*Q15_SCALE),
+    (q15_t)((0.318131589916f)*Q15_SCALE),
+    (q15_t)((0.501236277381f)*Q15_SCALE),
+    (q15_t)((0.318131589916f)*Q15_SCALE),
+    (q15_t)((-0.00120282271945f)*Q15_SCALE),
+    (q15_t)((-0.105589549166f)*Q15_SCALE),
+    (q15_t)((0.00117350076317f)*Q15_SCALE),
+    (q15_t)((0.0627699125898f)*Q15_SCALE),
+    (q15_t)((-0.00102989771779f)*Q15_SCALE),
+    (q15_t)((-0.0442298285766f)*Q15_SCALE),
+    (q15_t)((0.000698493282369f)*Q15_SCALE),
+    (q15_t)((0.033915009322f)*Q15_SCALE),
+    (q15_t)((-0.000346241972229f)*Q15_SCALE),
+    (q15_t)((-0.0281330166053f)*Q15_SCALE),
+    (q15_t)((-0.00263167338018f)*Q15_SCALE),
+    (q15_t)((0.0210111219837f)*Q15_SCALE),
+    (q15_t)((-0.00368573091007f)*Q15_SCALE),
+    (q15_t)((-0.0710128379074f)*Q15_SCALE),
+    (q15_t)((0.025066582451f)*Q15_SCALE),
+};
+
+static p2fir_q15_t P2_UP_2_Eq1_20dB_p2fir = {
+.numTaps = P2FIR_UP_SAMPLER_TAPS_N,
+.numCoeffs = P2FIR_UP_SAMPLER_COEFF_N,
+.index = 0,
+.pState = P2_UP_2_Eq1_20dB_state,
+.pCoeffs = P2_UP_2_Eq1_20dB_coeff
+};
+#endif  //_P2FIR_UPSAMPLE_H 

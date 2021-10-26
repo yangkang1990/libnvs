@@ -1,0 +1,10 @@
+2014-09-16 Lauro Ramos Venancio  <lauro.venancio@openbossa.org>
+	* libnvs: Update ADPCM transmission protocol
+
+2013-05-02 Lauro Ramos Venancio  <lauro.venancio@openbossa.org>
+	* libnvs: add support to ADPCM codec
+
+2012-11-09  Lauro Ramos Venancio  <lauro.venancio@openbossa.org>
+
+	* libnvs: initial version.
+
