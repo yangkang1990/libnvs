@@ -1,4 +1,4 @@
-#include <nvs.h>
+#include "../include/nvs.h"
 #include <stddef.h>
 
 int main(int argc, char *argv[]) {

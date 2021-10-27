@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <opus/opus.h>
-#include <nvs.h>
+#include "../include/nvs.h"
 
 #include "decoder.h"
 

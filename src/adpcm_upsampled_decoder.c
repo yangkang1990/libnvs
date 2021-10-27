@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdint.h>
 
-#include "nvs.h"
+#include "../include/nvs.h"
 #include "decoder.h"
 #include "upsampler/cmsis_q_types.h"
 #include "upsampler/upsampler_v1.h"

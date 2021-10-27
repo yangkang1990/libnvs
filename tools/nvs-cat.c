@@ -2,7 +2,7 @@
 #include <signal.h>
 #include <stdio.h>
 #include <errno.h>
-#include <nvs.h>
+#include "../include/nvs.h"
 
 static struct nvs_device *dev;
 

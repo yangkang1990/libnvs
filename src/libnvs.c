@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include <adpcm.h>
 
-#include "nvs.h"
+#include "../include/nvs.h"
 #include "hidraw.h"
 #include "protocol.h"
 #include "decoder.h"
