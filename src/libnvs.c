@@ -155,6 +155,7 @@ static struct nvs_decoder *adpcm_h256_init(void)
 
 static struct nvs_decoder *adpcm_h128_init(void)
 {
+	printf("adpcm_h128_init in\n");;
 	return decoder_adpcm_init(ADPCM_HEADER_SIZE + 128);
 }
 
@@ -304,7 +305,9 @@ static const struct nvs_codec nvs_codecs[] = {
 		.mask			= opus_sbc_desc_mask,
 		.mask_size		= sizeof(opus_sbc_desc_mask),
 		.decoder_init		= opus_24k_init,
-	}, {
+	}
+#if 0
+		, {
 		/* SBC 16kHz mSBC */
 		.sampling_rate		= 16125,
 		.report_id		= 4,
@@ -341,6 +344,8 @@ static const struct nvs_codec nvs_codecs[] = {
 		.mask_size		= sizeof(opus_sbc_desc_mask),
 		.decoder_init		= decoder_sbc_init,
 	}
+#endif		
+
 };
 
 static const struct nvs_codec *find_codec(const struct hidraw_report_descriptor *desc)
@@ -348,6 +353,18 @@ static const struct nvs_codec *find_codec(const struct hidraw_report_descriptor 
 	const struct nvs_codec *codec = NULL;
 	unsigned int idx, i;
 
+
+#if 0
+	printf("hidraw size=%d\n", desc->size);
+	for(int j=0; j<HID_MAX_DESCRIPTOR_SIZE;  j++)
+	{
+		printf("0x%02x, ", desc->value[j]);
+		if((j+1)%13==0)
+		{
+			printf("\n");
+		}
+	}
+#endif	
 	for (idx = 0; idx < (sizeof(nvs_codecs) / sizeof(nvs_codecs[0])); idx++) {
 		const struct nvs_codec *c = &nvs_codecs[idx];
 
@@ -367,6 +384,7 @@ static const struct nvs_codec *find_codec(const struct hidraw_report_descriptor 
 
 		if (i == c->descriptor_size) {
 			codec = c;
+			//printf("codec index = %d\n", idx);
 			break;
 		}
 	}
@@ -439,6 +457,8 @@ NVS_API int nvs_get_audio(struct nvs_device *dev, uint8_t *buffer)
 	size = hidraw_get_report(dev->fd, &report, sizeof(report));
 	if (size < 0)
 		return size;
+	//printf("report.report_id=%d\n", report.report_id);
+	//printf("dev report.report_id=%d\n", dev->codec->report_id);
 
 	if (dev->codec->report_id != report.report_id)
 		return -EAGAIN;

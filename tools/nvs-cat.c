@@ -2,6 +2,12 @@
 #include <signal.h>
 #include <stdio.h>
 #include <errno.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <linux/input.h>
+#include <stdlib.h>
+
 #include "../include/nvs.h"
 
 static struct nvs_device *dev;
@@ -40,6 +46,7 @@ int main(int argc, char **argv)
 	uint8_t buffer[NVS_MAX_FRAME_SIZE];
 	ssize_t written;
 	int size;
+	int fd;
 
 	if (argc != 2) {
 		fprintf(stderr, "Usage: %s <hidraw device>\n", argv[0]);
@@ -57,16 +64,19 @@ int main(int argc, char **argv)
 		perror("nvs_open");
 		return -1;
 	}
-
+	printf("generate the file /tmp/voice.adpcm");
+	fd = open("/tmp/voice.adpcm",O_WRONLY|O_CREAT);
 	while (1) {
 		size = nvs_get_audio(dev, buffer);
 		if (size < 0 && size != -EAGAIN) {
 			nvs_close(dev);
 			return size;
 		}
-
+		printf("size=%d\n", size);
 		written = 0;
 		while (written < size)
-			written += write(1, buffer + written, size - written);
+			written += write(fd, buffer + written, size - written);
+		
 	}
+	close(fd);
 }

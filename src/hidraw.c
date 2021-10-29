@@ -15,7 +15,7 @@ int hidraw_open(const char *dev_name)
 	int fd;
 
 	snprintf(dev_path, DEVPATH_MAX_SIZE, "/dev/%s", dev_name);
-
+	printf("[yk]hidraw_open:%s\n", dev_path);
 	fd = open(dev_path, O_RDWR);
 
 	return fd;

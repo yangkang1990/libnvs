@@ -23,7 +23,7 @@ static int adpcm_decode_pkt(struct nvs_decoder *d,
 			   int16_t *raw)
 {
 	struct adpcm_decoder *dec = (struct adpcm_decoder *) d;
-
+	//printf("[yk]adpcm_decode_pkt in\n");
 	/* We must receive "num_of_20byte_pkts" 20-bytes packets followed by a "last_pkt_size" packet */
 	if (size == 20) {
 		if (dec->pkts >= dec->num_of_20byte_pkts)
