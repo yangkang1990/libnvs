@@ -70,8 +70,8 @@ static pthread_mutex_t input_event_lock = PTHREAD_MUTEX_INITIALIZER;
 #define ADPCM_SAMPLE_RATE 	(7936)
 #define ADPCM_CHANNEL_NUM	(1)
 #define ADPCM_BITS_DEPTH    (16)
-#define ADPCM_FILENAME 	"/opt/www/voice.adpcm"
-#define WAV_FILENAME 	"/opt/www/voice.wav"
+#define ADPCM_FILENAME 	"/opt/www/nanovoice.adpcm"
+#define WAV_FILENAME 	"/opt/www/nanovoice.wav"
 
 
 static void
