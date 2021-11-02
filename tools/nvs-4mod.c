@@ -49,6 +49,11 @@
 
 
 
+/*proc*/
+#include <dirent.h>
+#include <sys/types.h>
+
+
 //#include "shared.h"
 
 uint32_t start_time;
@@ -67,7 +72,8 @@ static pthread_mutex_t input_event_lock = PTHREAD_MUTEX_INITIALIZER;
 
 
 #define BLE_HDI_NODE "hidraw0"
-#define ADPCM_SAMPLE_RATE 	(7936)
+//#define ADPCM_SAMPLE_RATE 	(7936)
+#define ADPCM_SAMPLE_RATE 	(8000)
 #define ADPCM_CHANNEL_NUM	(1)
 #define ADPCM_BITS_DEPTH    (16)
 #define ADPCM_FILENAME 	"/opt/www/nanovoice.adpcm"
@@ -800,6 +806,58 @@ int pcm_to_wav(char* fOut, char* fIn, size_t sample_rate,size_t num_channels,siz
 	
 }
 
+int proc_find(const char* name) 
+{
+    DIR* dir;
+    struct dirent* ent;
+    char* endptr;
+    char buf[512];
+	int ret = -1;
+
+    if (!(dir = opendir("/proc"))) {
+        perror("can't open /proc");
+        return -1;
+    }
+
+    while((ent = readdir(dir)) != NULL) {
+        /* if endptr is not a null character, the directory is not
+         * entirely numeric, so ignore it */
+        long lpid = strtol(ent->d_name, &endptr, 10);
+        if (*endptr != '\0') {
+            continue;
+        }
+
+        /* try to open the cmdline file */
+        snprintf(buf, sizeof(buf), "/proc/%ld/cmdline", lpid);
+        FILE* fp = fopen(buf, "r");
+
+        if (fp) {
+            if (fgets(buf, sizeof(buf), fp) != NULL) {
+#if 0				
+                /* check the first token in the file, the program name */
+                char* first = strtok(buf, " ");
+                if (!strcmp(first, name)) {
+                    fclose(fp);
+                    closedir(dir);
+                    return (pid_t)lpid;
+                }
+#endif	
+				if(!strstr(buf, name))
+				{
+					printf("[yk]global app is running");
+                    fclose(fp);
+                    closedir(dir);
+                    return 0;
+				}
+            }
+            fclose(fp);
+        }
+
+    }
+
+    closedir(dir);
+    return -1;
+}
 
 
 int main(int argc, char **argv)
@@ -822,8 +880,47 @@ int main(int argc, char **argv)
 	//if (install_termination_handler()) {
 	//	perror("install_termination_handler");
 	//	return -1;
-	//}
-	printf("event test begin");	
+	//} 
+
+#if 0
+
+	while(1)
+	{
+
+		if(proc_find("GlobalApp")==0)
+		{
+			if(access("/dev/hidraw0",F_OK)==0)
+			{
+				sleep(2);
+				break;	
+			}		
+			else
+			{
+				sleep(2);
+			}
+		}
+		else
+		{
+			sleep(2);
+		}		
+	}
+#else
+	while(1)
+	{
+		if(access("/dev/hidraw0",F_OK)==0)
+		{
+			break;	
+		}		
+		else
+		{
+			sleep(1);
+		}
+	}
+
+#endif
+	
+
+	printf("event test begin"); 
 	pthread_condattr_init(&input_event_attr);
 	pthread_condattr_setclock(&input_event_attr, CLOCK_MONOTONIC);
 	pthread_cond_init(&input_event_cond, &input_event_attr);	
