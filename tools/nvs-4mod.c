@@ -866,6 +866,7 @@ int main(int argc, char **argv)
 	struct libinput *li;
 	struct timespec tp;
 
+	setvbuf(stdout, NULL, _IOLBF, 0);
 	clock_gettime(CLOCK_MONOTONIC, &tp);
 	start_time = tp.tv_sec * 1000 + tp.tv_nsec / 1000000;
 
